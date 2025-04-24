@@ -29,7 +29,7 @@ def convert_value(value):
 data = [ {col: convert_value(val) for col, val in zip(columns, row)} for row in rows ]
 
 # Сохраняем в JSON файл
-with open("raw_data.json", "w", encoding="utf-8") as f:
+with open("data_bd/raw_data.json", "w", encoding="utf-8") as f:
     json.dump(data, f, indent=4, ensure_ascii=False)
 
 # Закрываем соединение

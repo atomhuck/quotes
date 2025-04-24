@@ -1,0 +1,95 @@
+.quotes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.quote-card {
+  background: var(--sfedu-white);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  padding: 1.5rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.quote-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.quote-text {
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.quote-meta {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.professor-name {
+  font-weight: bold;
+  color: var(--sfedu-dark-blue);
+}
+
+.faculty-name {
+  display: inline-block;
+  background-color: var(--sfedu-light-blue);
+  color: white;
+  font-weight: bold;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+}
+
+.quote-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.quote-date {
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.like-btn, .repost-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: #666;
+  transition: color 0.3s;
+}
+
+.like-btn:hover {
+  color: #e74c3c;
+}
+
+.repost-btn:hover {
+  color: var(--sfedu-light-blue);
+}
+
+.fac-link:hover{
+  color: #e74c3c;
+}
+
+.fac-link{
+  text-decoration: none;
+  color: var(--sfedu-white-blue);
+  font-weight: bold;
+}

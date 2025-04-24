@@ -1,0 +1,87 @@
+:root {
+  --sfedu-dark-blue: #003366;
+  --sfedu-light-blue: #0066cc;
+  --sfedu-white: #ffffff;
+  --sfedu-light-gray: #f5f5f5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--sfedu-light-gray);
+  color: #333;
+  line-height: 1.6;
+}
+
+header {
+  background-color: var(--sfedu-dark-blue);
+  color: var(--sfedu-white);
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin-left: 2rem;
+}
+
+nav ul li a {
+  color: var(--sfedu-white);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  border-bottom: 2px solid var(--sfedu-light-blue);
+}
+
+main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--sfedu-dark-blue);
+}
+
+footer {
+  background-color: var(--sfedu-dark-blue);
+  color: var(--sfedu-white);
+  padding: 2rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.copyright {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
+}

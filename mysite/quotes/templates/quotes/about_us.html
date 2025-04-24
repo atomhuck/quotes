@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас</title>
+    <link rel="stylesheet" href="{% static 'quotes/style_about.css' %}">
+</head>
+<body>
+
+
+  <header>
+        <div class="header-container">
+            <div class="logo">Цитаты преподавателей ЮФУ</div>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'main' %}">Главная👑</a></li>
+                    <li><a href="{% url 'popular_quotes' %}">Топ 20 цитат🔥</a></li>
+                    <li><a href="{% url 'facs' %}">Факультеты🏬</a></li>
+                    <li><a href="" class="active">О нас📖</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+<div style="display: inline-flex;">
+
+<div class="container">
+    <div class="team-member">
+        <img src="{% static 'quotes/images/murad.jpg' %}" alt="Фото участника 1">
+        <div>
+            <h3>Мурад Чараков</h3>
+            <p class="role">Frontend-разработчик</p>
+  
+        </div>
+    </div>
+
+    <div class="team-member">
+        <img src="{% static 'quotes/images/efim.jpg' %}" alt="Фото участника 2">
+        <div>
+            <h3>Ефим Ефимов</h3>
+            <p class="role">Backend-разработчик</p>
+        </div>
+    </div>
+
+    <div class="team-member">
+        <img src="{% static 'quotes/images/anton.jpg' %}" alt="Фото участника 2">
+        <div>
+            <h3>Антон Семенов</h3>
+            <p class="role">Backend-разработчик</p>
+        </div>
+    </div>
+
+    <div class="team-member">
+        <img src="{% static 'quotes/images/sefer.jpg' %}" alt="Фото участника 2">
+        <div>
+            <h3>Сефер Сеферов</h3>
+            <p class="role">Тестировщик</p>
+        </div>
+    </div>
+
+    <div class="team-member">
+        <img src="{% static 'quotes/images/dima.jpg' %}" alt="Фото участника 2">
+        <div>
+            <h3>Дмитрий Рубанский</h3>
+            <p class="role">Frontend-разработчик</p>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="padding-left: 50px;">
+	<video width="640" height="570" controls>
+    <source src="{% static 'quotes/videos/about_vid.mp4' %}" type="video/mp4">
+    Ваш браузер не поддерживает тег video.
+</video>
+
+</div>
+</div>
+  <footer>
+    <div class="copyright">
+      &copy; 2025 Цитаты преподавателей ЮФУ.
+    </div>
+  </footer>
+
+</body>
+</html>

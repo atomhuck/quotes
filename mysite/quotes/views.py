@@ -14,3 +14,10 @@ def faculty_detail(request, slug):
     faculty = Faculties.objects.get(slug=slug)
     quotes = Quotes.objects.filter(professor__faculty=faculty)
     return render(request, 'quotes/faculties_detail.html', {'faculty': faculty, 'quotes': quotes})
+
+def  popular_quotes(request):
+    quotes = Quotes.objects.order_by('-likes_count')[:20]
+    return render(request, 'quotes/top_popular.html', {'quotes': quotes})
+
+def about_us(request):
+    return render(request, 'quotes/about_us.html', {})

@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Цитаты преподавателей ЮФУ</title>
+  <link rel="stylesheet" href="{% static 'quotes/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'quotes/styles_cards.css' %}">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo">Цитаты преподавателей ЮФУ</div>
+      <nav>
+        <ul>
+            <li><a href="{% url 'main' %}">Главная👑</a></li>
+            <li><a href="" class="active">Топ 20 цитат🔥</a></li>
+            <li><a href= "{% url 'facs' %}">Факультеты🏬</a></li>
+            <li><a href="{% url 'about' %}">О нас📖</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="page-title">Топ 20 популярных цитат</h1>
+    <div class="quotes-grid">
+      {% for quote in quotes %}
+      <div class="quote-card">
+        <p class="quote-text">{{ quote.text }}</p>
+        <div class="quote-meta">
+          <div class="professor-name">{{ quote.professor.name }}</div>
+          <div class="faculty-name"><a class="fac-link" href="{% url 'faculty_detail' slug=quote.professor.faculty.slug %}">{{ quote.professor.faculty.name }}</a></div>
+        </div>
+        <div class="quote-stats">
+          <span class="quote-date">{{ quote.date }}</span>
+          <div class="action-buttons">
+            <button class="like-btn">👍 {{ quote.likes_count }}</button>
+            <button class="repost-btn">↻ {{ quote.reposts_count }}</button>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </main>
+
+  <footer>
+    <div class="copyright">
+      &copy; 2025 Цитаты преподавателей ЮФУ.
+    </div>
+  </footer>
+</body>
+</html>

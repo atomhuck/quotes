@@ -1,0 +1,252 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{{ faculty.name }} — Цитаты преподавателей ЮФУ</title>
+  <style>
+    :root {
+      --sfedu-dark-blue: #003366;
+      --sfedu-light-blue: #0066cc;
+      --sfedu-white: #ffffff;
+      --sfedu-light-gray: #f5f5f5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--sfedu-light-gray);
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--sfedu-dark-blue);
+      color: var(--sfedu-white);
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin-left: 2rem;
+    }
+
+    nav ul li a {
+      color: var(--sfedu-white);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      border-bottom: 2px solid var(--sfedu-light-blue);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+
+    .page-title {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--sfedu-dark-blue);
+    }
+
+    .quotes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .quote-card {
+      background: var(--sfedu-white);
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      padding: 1.5rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .quote-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .quote-text {
+      font-style: italic;
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .quote-meta {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    .professor-name {
+      font-weight: bold;
+      color: var(--sfedu-dark-blue);
+    }
+
+    .faculty-name {
+      display: inline-block;
+      background-color: var(--sfedu-light-blue);
+      color: white;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      margin-top: 0.3rem;
+    }
+
+    .quote-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid #eee;
+    }
+
+    .quote-date {
+      font-size: 0.8rem;
+      color: #999;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .like-btn, .repost-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      color: #666;
+      transition: color 0.3s;
+    }
+
+    .like-btn:hover {
+      color: #e74c3c;
+    }
+
+    .repost-btn:hover {
+      color: var(--sfedu-light-blue);
+    }
+
+    footer {
+      background-color: var(--sfedu-dark-blue);
+      color: var(--sfedu-white);
+      padding: 2rem;
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .copyright {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    @media (max-width: 900px) {
+      .quotes-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      nav ul {
+        gap: 1rem;
+      }
+
+      nav ul li {
+        margin-left: 0;
+      }
+
+      .quotes-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo">Цитаты преподавателей ЮФУ</div>
+      <nav>
+        <ul>
+          <li><a href="{% url 'main' %}">Главная</a></li>
+          <li><a href="#">О нас</a></li>
+          <li><a href="{% url 'facs' %}" class="active">Факультеты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="page-title">Цитаты факультета: {{ faculty.name }}</h1>
+    <div class="quotes-grid">
+      {% for quote in quotes %}
+      <div class="quote-card">
+        <p class="quote-text">{{ quote.text }}</p>
+        <div class="quote-meta">
+          <div class="professor-name">{{ quote.professor.name }}</div>
+          <div class="faculty-name">{{ quote.professor.faculty.name }}</div>
+        </div>
+        <div class="quote-stats">
+          <span class="quote-date">{{ quote.date }}</span>
+          <div class="action-buttons">
+            <button class="like-btn">👍 {{ quote.likes_count }}</button>
+            <button class="repost-btn">↻ {{ quote.reposts_count }}</button>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+        <p>Цитат пока нет.</p>
+      {% endfor %}
+    </div>
+  </main>
+
+  <footer>
+    <div class="copyright">
+      &copy; 2025 Цитаты преподавателей ЮФУ. Все права защищены.
+    </div>
+  </footer>
+</body>
+</html>

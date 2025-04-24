@@ -7,5 +7,10 @@ def main(request):
     return render(request, 'quotes/some.html', {'quotes': quotes})
 
 def facs(request):
-    faculties = Faculties.objects.all()[:20]
+    faculties = Faculties.objects.all()
     return render(request, 'quotes/faculties.html', {'faculties': faculties})
+
+def faculty_detail(request, slug):
+    faculty = Faculties.objects.get(slug=slug)
+    quotes = Quotes.objects.filter(professor__faculty=faculty)
+    return render(request, 'quotes/faculties_detail.html', {'faculty': faculty, 'quotes': quotes})

@@ -46,7 +46,8 @@
             border-bottom: 2px solid transparent;
         }
 
-        nav ul li a:hover {
+        nav ul li a:hover,
+        nav ul li a.active {
             border-color: var(--sfedu-light-blue);
         }
 
@@ -103,8 +104,8 @@
             <div class="logo">Цитаты преподавателей ЮФУ</div>
             <nav>
                 <ul>
-                    <li><a href="/">Главная</a></li>
-<!--                    <li><a href="{% url 'faculty_list' %}" class="active">Факультеты</a></li>-->
+                    <li><a href="{% url 'main' %}">Главная</a></li>
+                    <li><a href="{% url 'facs' %}" class="active">Факультеты</a></li>
                 </ul>
             </nav>
         </div>
@@ -115,7 +116,11 @@
         <div class="faculties-grid">
             {% for faculty in faculties %}
                 <div class="faculty-card">
-<!--                    <a href="{% url 'faculty_detail' faculty.id %}">{{ faculty.name }}</a>-->
+                    {% if faculty.slug %}
+                        <a href="{% url 'faculty_detail' slug=faculty.slug %}">{{ faculty.name }}</a>
+                    {% else %}
+                        <span>{{ faculty.name }} (нет ссылки)</span>
+                    {% endif %}
                 </div>
             {% endfor %}
         </div>
@@ -123,7 +128,7 @@
 
     <footer>
         <div class="copyright">
-            &copy; 2023 Цитаты преподавателей ЮФУ. Все права защищены.
+            &copy; 2025 Цитаты преподавателей ЮФУ. Все права защищены.
         </div>
     </footer>
 </body>

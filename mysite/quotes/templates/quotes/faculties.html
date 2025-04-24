@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Факультеты | Цитаты преподавателей ЮФУ</title>
+    <style>
+        :root {
+            --sfedu-dark-blue: #003366;
+            --sfedu-light-blue: #0066cc;
+            --sfedu-white: #ffffff;
+            --sfedu-light-gray: #f5f5f5;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--sfedu-light-gray);
+            color: #333;
+            margin: 0;
+        }
+
+        header, footer {
+            background-color: var(--sfedu-dark-blue);
+            color: var(--sfedu-white);
+            padding: 1rem 2rem;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav ul li a:hover {
+            border-color: var(--sfedu-light-blue);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        h1 {
+            color: var(--sfedu-dark-blue);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .faculties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .faculty-card {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .faculty-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .faculty-card a {
+            text-decoration: none;
+            color: var(--sfedu-dark-blue);
+            font-weight: bold;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1rem;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">Цитаты преподавателей ЮФУ</div>
+            <nav>
+                <ul>
+                    <li><a href="/">Главная</a></li>
+<!--                    <li><a href="{% url 'faculty_list' %}" class="active">Факультеты</a></li>-->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h1>Факультеты</h1>
+        <div class="faculties-grid">
+            {% for faculty in faculties %}
+                <div class="faculty-card">
+<!--                    <a href="{% url 'faculty_detail' faculty.id %}">{{ faculty.name }}</a>-->
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer>
+        <div class="copyright">
+            &copy; 2023 Цитаты преподавателей ЮФУ. Все права защищены.
+        </div>
+    </footer>
+</body>
+</html>

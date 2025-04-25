@@ -26,13 +26,15 @@
         <h1 class="page-title">Факультеты</h1>
         <div class="faculties-grid">
             {% for faculty in faculties %}
+                {% if faculty.quotes_count > 0 %}
                 <div class="faculty-card">
-                    {% if faculty.slug %}
-                        <a href="{% url 'faculty_detail' slug=faculty.slug %}">{{ faculty.name }}</a>
-                    {% else %}
-                        <span>{{ faculty.name }} (нет ссылки)</span>
-                    {% endif %}
+                        {% if faculty.slug %}
+                            <a href="{% url 'faculty_detail' slug=faculty.slug %}">{{ faculty.name }}</a>
+                        {% else %}
+                            <span>{{ faculty.name }} (нет ссылки)</span>
+                        {% endif %}
                 </div>
+                {% endif %}
             {% endfor %}
         </div>
     </main>

@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from .models import Faculties, Professors, Quotes
+from django.db.models import Count
 import json
 from slugify import slugify
 import os
@@ -10,8 +11,9 @@ def main(request):
     return render(request, 'quotes/some.html', {'quotes': quotes})
 
 def facs(request):
-    faculties = Faculties.objects.all()
-    return render(request, 'quotes/faculties.html', {'faculties': faculties})
+    faculties = Faculties.objects.annotate(quotes_count=Count('professors__quotes'))
+    quotes = Quotes.objects.all()
+    return render(request, 'quotes/faculties.html', {'faculties': faculties, 'quotes': quotes})
 
 def faculty_detail(request, slug):
     faculty = Faculties.objects.get(slug=slug)

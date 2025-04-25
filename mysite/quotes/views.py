@@ -1,6 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
-from .models import Faculties, Professors, Quotes, QuotesProfessors
+from .models import Faculties, Professors, Quotes
+import json
+from slugify import slugify
+import os
 
 def main(request):
     quotes = Quotes.objects.all()[:9]

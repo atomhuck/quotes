@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import QuotesProfessors, Quotes, Faculties, Professors
+from .models import Quotes, Faculties, Professors
 
 # Регистрация моделей для админки
 admin.site.register(Quotes)

@@ -2,7 +2,7 @@ import json
 from models import Faculties, Professors
 
 # Откройте и прочитайте JSON-файл
-with open('data_bd/professors.json', 'r') as file:
+with open('professors.json', 'r') as file:
     data = json.load(file)
 
 # Запишем данные в таблицу Faculties

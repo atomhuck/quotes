@@ -3,6 +3,8 @@
   --sfedu-light-blue: #0066cc;
   --sfedu-white: #ffffff;
   --sfedu-light-gray: #f5f5f5;
+  --sfedu-hover-blue: #e6f0ff;
+  --sfedu-border: #ddd;
 }
 
 * {
@@ -23,6 +25,8 @@ header {
   color: var(--sfedu-white);
   padding: 1rem 2rem;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 10;
 }
 
 .header-container {
@@ -31,16 +35,21 @@ header {
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
+  color: var(--sfedu-white);
+  text-decoration: none;
 }
 
 nav ul {
   display: flex;
   list-style: none;
+  flex-wrap: wrap;
 }
 
 nav ul li {
@@ -69,10 +78,94 @@ main {
 
 .page-title {
   text-align: center;
-  margin-bottom: 2rem;
+  margin: 2rem 0;
   color: var(--sfedu-dark-blue);
 }
 
+/* Поисковая форма */
+/* ========== Поиск преподавателей ========== */
+
+.search-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 40px auto;
+  z-index: 100;
+}
+
+#prof-search, #faculty-search {
+  width: 100%;
+  padding: 12px 16px 12px 42px;
+  font-size: 1rem;
+  border-radius: 24px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: 0.3s all ease-in-out;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg fill='gray' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M21 20l-5.7-5.7a7 7 0 1 0-1.4 1.4L20 21zM4 10a6 6 0 1 1 12 0A6 6 0 0 1 4 10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 12px center;
+  background-size: 20px;
+}
+
+#prof-search:focus, #faculty-search:focus {
+  border-color: #0066cc;
+  box-shadow: 0 0 6px rgba(0, 102, 204, 0.3);
+}
+
+/* Выпадающий список подсказок */
+.suggestions-list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  max-height: 280px;
+  overflow-y: auto;
+  display: none;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.suggestions-list li {
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s ease;
+}
+
+.suggestions-list li:last-child {
+  border-bottom: none;
+}
+
+.suggestions-list li:hover {
+  background-color: #f2f9ff;
+}
+
+.suggestions-list a {
+  text-decoration: none;
+  color: #003366;
+  font-weight: 500;
+  display: block;
+  width: 100%;
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 footer {
   background-color: var(--sfedu-dark-blue);
   color: var(--sfedu-white);
@@ -81,7 +174,7 @@ footer {
   text-align: center;
 }
 
-.copyright {
+copyright {
   font-size: 0.9rem;
   color: rgba(255,255,255,0.7);
 }

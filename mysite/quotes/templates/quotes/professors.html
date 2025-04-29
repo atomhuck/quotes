@@ -6,7 +6,7 @@
     <title>Факультеты | Цитаты преподавателей ЮФУ</title>
     <link rel="stylesheet" href="{% static 'quotes/styles.css' %}">
     <link rel="stylesheet" href="{% static 'quotes/styles_faculties.css' %}">
-    <script type="text/javascript" src={% static "quotes/js/search_fac.js" %}></script>
+    <script type="text/javascript" src={% static "quotes/js/search_prof.js" %}></script>
 </head>
 <body>
     <header>
@@ -16,8 +16,8 @@
                 <ul>
                     <li><a href="{% url 'main' %}">Главная👑</a></li>
                     <li><a href="{% url 'popular_quotes' %}">Топ 20 цитат🔥</a></li>
-                    <li><a href="{% url 'facs' %}" class="active">Факультеты🏬</a></li>
-                    <li><a href="{% url 'profs' %}">Преподаватели🧙‍♂️</a></li>
+                    <li><a href="{% url 'facs' %}">Факультеты🏬</a></li>
+                    <li><a href="{% url 'profs' %}" class="active">Преподаватели🧙‍♂️</a></li>
                     <li><a href="{% url 'about' %}">О нас📖</a></li>
                 </ul>
             </nav>
@@ -26,21 +26,19 @@
 
     <main>
         <div class="search-container">
-          <input type="text" id="faculty-search" placeholder="Найти факультет..." autocomplete="off">
-          <ul class="suggestions-list" id="faculty-suggestions"></ul>
-        </div>
-        <h1 class="page-title">Факультеты</h1>
+            <input type="text" id="prof-search" placeholder="Найти преподавателя..." autocomplete="off">
+            <ul class="suggestions-list" id="suggestions"></ul>
+      </div>
+        <h1 class="page-title">Профессора</h1>
         <div class="faculties-grid">
-            {% for faculty in faculties %}
-                {% if faculty.quotes_count > 0 %}
+            {% for professor in professors %}
                 <div class="faculty-card">
-                        {% if faculty.slug %}
-                            <a href="{% url 'faculty_detail' slug=faculty.slug %}">{{ faculty.name }}</a>
+                        {% if professor.slug %}
+                            <a href="{% url 'professor_detail' slug=professor.slug %}">{{ professor.name }}</a>
                         {% else %}
-                            <span>{{ faculty.name }} (нет ссылки)</span>
+                            <span>{{ professor.name }} (нет ссылки)</span>
                         {% endif %}
                 </div>
-                {% endif %}
             {% endfor %}
         </div>
     </main>

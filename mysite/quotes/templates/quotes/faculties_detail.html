@@ -7,6 +7,7 @@
   <title>{{ faculty.name }} — Цитаты преподавателей ЮФУ</title>
   <link rel="stylesheet" href="{% static 'quotes/styles.css' %}">
   <link rel="stylesheet" href="{% static 'quotes/styles_cards.css' %}">
+  <script type="text/javascript" src={% static "quotes/js/search_fac.js" %}></script>
 </head>
 <body>
   <header>
@@ -17,6 +18,7 @@
             <li><a href="{% url 'main' %}">Главная👑</a></li>
             <li><a href="{% url 'popular_quotes' %}">Топ 20 цитат🔥</a></li>
             <li><a href="{% url 'facs' %}" class="active">Факультеты🏬</a></li>
+            <li><a href="{% url 'profs' %}">Преподаватели🧙‍♂️</a></li>
             <li><a href="{% url 'about' %}">О нас📖</a></li>
         </ul>
       </nav>
@@ -24,13 +26,17 @@
   </header>
 
   <main>
+      <div class="search-container">
+          <input type="text" id="faculty-search" placeholder="Найти факультет..." autocomplete="off">
+          <ul class="suggestions-list" id="faculty-suggestions"></ul>
+      </div>
     <h1 class="page-title">Цитаты факультета: {{ faculty.name }}</h1>
     <div class="quotes-grid">
       {% for quote in quotes %}
       <div class="quote-card">
         <p class="quote-text">{{ quote.text }}</p>
         <div class="quote-meta">
-          <div class="professor-name">{{ quote.professor.name }}</div>
+          <div class="professor-name"><a class="card-link" href="{% url 'professor_detail' slug=quote.professor.slug %}">{{ quote.professor.name }}</a></div>
           <div class="faculty-name">{{ quote.professor.faculty.name }}</div>
         </div>
         <div class="quote-stats">

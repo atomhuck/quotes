@@ -84,11 +84,11 @@
   color: var(--sfedu-light-blue);
 }
 
-.fac-link:hover{
+.card-link:hover{
   color: #e74c3c;
 }
 
-.fac-link{
+.card-link{
   text-decoration: none;
   color: var(--sfedu-white-blue);
   font-weight: bold;

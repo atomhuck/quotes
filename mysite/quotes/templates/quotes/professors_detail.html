@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Цитаты преподавателей ЮФУ</title>
+  <title>{{ faculty.name }} — Цитаты преподавателей ЮФУ</title>
   <link rel="stylesheet" href="{% static 'quotes/styles.css' %}">
   <link rel="stylesheet" href="{% static 'quotes/styles_cards.css' %}">
   <script type="text/javascript" src={% static "quotes/js/search_prof.js" %}></script>
@@ -15,10 +15,10 @@
       <div class="logo">Цитаты преподавателей ЮФУ</div>
       <nav>
         <ul>
-            <li><a href="" class="active">Главная👑</a></li>
+            <li><a href="{% url 'main' %}">Главная👑</a></li>
             <li><a href="{% url 'popular_quotes' %}">Топ 20 цитат🔥</a></li>
-            <li><a href= "{% url 'facs' %}">Факультеты🏬</a></li>
-            <li><a href="{% url 'profs' %}">Преподаватели🧙‍♂️</a></li>
+            <li><a href="{% url 'facs' %}">Факультеты🏬</a></li>
+            <li><a href="{% url 'profs' %}" class="active">Преподаватели🧙‍♂️</a></li>
             <li><a href="{% url 'about' %}">О нас📖</a></li>
         </ul>
       </nav>
@@ -26,17 +26,17 @@
   </header>
 
   <main>
-  <div class="search-container">
-        <input type="text" id="prof-search" placeholder="Найти преподавателя..." autocomplete="off">
-        <ul class="suggestions-list" id="suggestions"></ul>
-  </div>
-    <h1 class="page-title">Последние цитаты</h1>
+      <div class="search-container">
+            <input type="text" id="prof-search" placeholder="Найти преподавателя..." autocomplete="off">
+            <ul class="suggestions-list" id="suggestions"></ul>
+      </div>
+    <h1 class="page-title">Цитаты преподавателя: {{ professor.name }}</h1>
     <div class="quotes-grid">
       {% for quote in quotes %}
       <div class="quote-card">
         <p class="quote-text">{{ quote.text }}</p>
         <div class="quote-meta">
-          <div class="professor-name"><a class="card-link" href="{% url 'professor_detail' slug=quote.professor.slug %}">{{ quote.professor.name }}</a></div>
+          <div class="professor-name">{{ quote.professor.name }}</div>
           <div class="faculty-name"><a class="card-link" href="{% url 'faculty_detail' slug=quote.professor.faculty.slug %}">{{ quote.professor.faculty.name }}</a></div>
         </div>
         <div class="quote-stats">
@@ -47,10 +47,11 @@
           </div>
         </div>
       </div>
+      {% empty %}
+        <p>Цитат пока нет.</p>
       {% endfor %}
     </div>
   </main>
-
   <footer>
     <div class="copyright">
       &copy; 2025 Цитаты преподавателей ЮФУ.

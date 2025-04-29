@@ -18,6 +18,18 @@ class Faculties(models.Model):
 class Professors(models.Model):
     name = models.CharField(max_length=255)
     faculty = models.ForeignKey(Faculties, on_delete=models.CASCADE, related_name="professors", blank=True, null=True)
+    slug = models.SlugField(unique=True, null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.name)
+            slug = base_slug
+            counter = 1
+            while Professors.objects.filter(slug=slug).exclude(id=self.id).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
